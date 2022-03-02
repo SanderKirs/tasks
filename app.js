@@ -38,7 +38,22 @@ function addTask(e){
     const ul = document.querySelector('.collection');
     ul.appendChild(li);
 
+    addTaskToLocalStorage(task);
+
     taskInput.value = '';
     e.preventDefault();
+
+}
+
+function addTaskToLocalStorage(task){
+    let tasks;
+    if(localStorage.getItem('tasks') === null){
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    console.log(tasks);
 
 }
