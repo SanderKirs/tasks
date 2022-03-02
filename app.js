@@ -11,6 +11,15 @@ function deleteTasks(){
     while(tasksList.firstChild){
         tasksList.removeChild(tasksList.firstChild);
     }
+    deleteAllTasksFromLocalStorage();
+}
+
+function deleteAllTasksFromLocalStorage(){
+    if(localStorage.getItem('tasks') === null){
+        let tasks = [];
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+    localStorage.removeItem('tasks');
 }
 
 function deleteTask(e){
